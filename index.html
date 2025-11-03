@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diverse Learning | Tutoring Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #2C3E50;
+      background-color: #F7F9FC;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #2C3E50;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .logo-container {
+      display: flex;          /* aligns text and image in a row */
+      align-items: center;    /* vertically center text and image */
+      gap: 10px;              /* space between text and image */
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      background: linear-gradient(45deg, #FF6B6B, #FFD6A5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+      letter-spacing: 2px;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover { transform: scale(1.1) rotate(-2deg); }
+
+    .logo-image {
+      height: 50px;       /* adjust as needed */
+      width: auto;        /* maintains aspect ratio */
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active { color: #FF6B6B; }
+
+    section {
+      padding: 160px 20px 40px; /* header offset fixed */
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 200px 20px 140px;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #FFD6A5, #FF6B6B, #FFDAC1, #FF6B6B);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite, fadeUp 1s ease forwards;
+    }
+
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+      z-index: 1;
+      position: relative;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      line-height: 1.7;
+      z-index: 1;
+      position: relative;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #FF6B6B, #FFD6A5);
+      color: #2C3E50;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+      z-index: 1;
+      position: relative;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(255,107,107,0.5);
+      background: linear-gradient(45deg, #FFD6A5, #FF6B6B);
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #2C3E50;
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #FF6B6B;
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about ul {
+      margin-top: 15px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .about li {
+      background: linear-gradient(90deg, #FF6B6B, #FFD6A5);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .about li.visible { opacity: 1; transform: translateY(0); }
+
+    /* Services & Pricing Cards */
+    .services-list, .pricing-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .service-card, .pricing-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 35px 25px;
+      text-align: center;
+      transition: all 0.4s ease;
+      color: #2C3E50;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .service-card:hover, .pricing-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(to right, #F9FFF5, #DFFFE1);
+      border-radius: 12px;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%);
+      transform: rotate(45deg);
+      animation: shimmer 8s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(45deg);}
+      100% { transform: translateX(100%) rotate(45deg);}
+    }
+
+    .testimonial {
+      background: #FFF9F5;
+      border-left: 6px solid #FF6B6B;
+      padding: 30px 25px;
+      margin: 25px auto;
+      max-width: 750px;
+      border-radius: 16px;
+      font-style: italic;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      position: relative;
+      color: #2C3E50;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .testimonial::before {
+      content: "“";
+      font-size: 3rem;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      color: #FF6B6B;
+    }
+
+    /* Contact Form */
+    .contact form {
+      max-width: 650px;
+      margin: 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact input, .contact textarea, .contact select {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      transition: all 0.3s;
+    }
+
+    .contact input:focus, .contact textarea:focus, .contact select:focus {
+      border-color: #FF6B6B;
+      box-shadow: 0 0 10px rgba(255,107,107,0.3);
+      outline: none;
+    }
+
+    .contact button {
+      background: linear-gradient(45deg, #FF6B6B, #FFD6A5);
+      color: #2C3E50;
+      padding: 16px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    .contact button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(255,107,107,0.5);
+      background: linear-gradient(45deg, #FFD6A5, #FF6B6B);
+    }
+
+    /* Footer */
+    footer {
+      background: #2C3E50;
+      color: #FFD6A5;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.95rem;
+    }
+
+    footer a { color: #FFD6A5; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; text-align: center; }
+      nav { margin-top: 0.5rem; }
+      .hero h1 { font-size: 2.5rem; }
+      h2 { font-size: 2.2rem; }
+      .services-list, .pricing-list { gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <div class="logo">Diverse Learning</div>
+      <img src="diverse-learning-logo.png" alt="Diverse Learning Logo" class="logo-image">
+    </div>
+    <nav>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#testimonials" class="nav-link">Testimonials</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="appointments.html" class="nav-link">Appointments</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Empowering Students from Grade 1 to University</h1>
+    <p>At Diverse Learning, Manny provides tailored tutoring in Math, Science, and Computer Programming, helping students build confidence, understanding, and lasting academic success at every level. Online and in-person sessions available.</p>
+    <a href="appointments.html" class="btn">Book a Session</a>
+  </section>
+
+  <!-- About, Services, Pricing, Testimonials, Contact sections remain exactly as before -->
+
+  <section id="about" class="about">
+    <h2>About Diverse Learning</h2>
+    <p>Diverse Learning is dedicated to helping students of all ages succeed academically. Founded by Manny, who holds a <b>Bachelor’s degree in Biochemistry</b> and a <b>Master’s degree in Computer Engineering</b>, his approach combines deep subject knowledge with personalized teaching strategies. He teaches students from <b>Grade 1 all the way to university level</b>, tailoring lessons to individual learning styles and goals. He provides support for assignments, homework, and exam preparation in both <b>online and in-person sessions</b> (held at a local library).</p>
+    
+    <ul>
+      <li>Recognizes that students have unique learning styles and adapts teaching methods accordingly.</li>
+      <li>Combines visual, auditory, and hands-on learning strategies for better understanding.</li>
+      <li>Focuses on building long-term academic confidence and skills.</li>
+      <li>Supports both in-person and online learning environments.</li>
+    </ul>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Services</h2>
+    <div class="services-list">
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Math Tutoring">
+        <h3>Math Tutoring</h3>
+        <p>Grades 1-12, including high school math (Algebra, Geometry, Trigonometry, Calculus).</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/256401/pexels-photo-256401.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Science Tutoring">
+        <h3>Science Tutoring</h3>
+        <p>Grades 1-12: Biology, Chemistry, Physics. University level: Chemistry, Biology, Physics.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Computer Programming">
+        <h3>Computer Programming</h3>
+        <p>Learn coding fundamentals, problem-solving, and programming languages at both beginner and advanced levels.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/4145191/pexels-photo-4145191.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Assignment Support">
+        <h3>Assignment & Exam Support</h3>
+        <p>Homework help, assignment guidance, and targeted exam preparation for all grade levels.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-list">
+      <div class="pricing-card">
+        <h3>Group Study (1-3 students)</h3>
+        <p><b>$30/hour</b></p>
+      </div>
+      <div class="pricing-card">
+        <h3>Individual Study: Grades 1-8</h3>
+        <p><b>$35/hour</b></p>
+      </div>
+      <div class="pricing-card">
+        <h3>Individual Study: Grades 9-12</h3>
+        <p><b>$40/hour</b></p>
+      </div>
+      <div class="pricing-card">
+        <h3>University Level</h3>
+        <p><b>$50/hour</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <h2>What Our Students Say</h2>
+    <div class="testimonial">“Manny is an incredible tutor—patient, knowledgeable, and motivating. My grades have improved dramatically!” – <b>Sarah L.</b></div>
+    <div class="testimonial">“He explains concepts so clearly that even the hardest topics start to make sense. Highly recommended!” – <b>Jason T.</b></div>
+    <div class="testimonial">“Diverse Learning has changed how I approach studying. I actually enjoy learning now!” – <b>Amira K.</b></div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p style="text-align:center;">Have questions or want to book a session? Please leave your information below and let us know which subjects you'd like help with:</p>
+    <form id="contactForm" action="https://formspree.io/f/manlvyee" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <textarea name="subjects" rows="3" placeholder="Subjects you want help with (e.g., Math, Science)" required></textarea>
+      <select name="mode" required>
+        <option value="">Select Mode of Tutoring</option>
+        <option value="in-person">In-Person</option>
+        <option value="online">Online</option>
+        <option value="both">Both</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2023 Diverse Learning. All rights reserved. | Designed by Manny
+  </footer>
+
+  <script>
+    // Scroll fade-in effect
+    const sections = document.querySelectorAll('section');
+    const listItems = document.querySelectorAll('.about li');
+
+    function revealSections() {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < triggerBottom){ section.classList.add('visible'); }
+      });
+      listItems.forEach((item, i) => {
+        const itemTop = item.getBoundingClientRect().top;
+        if(itemTop < triggerBottom){
+          setTimeout(() => { item.classList.add('visible'); }, i * 150);
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('load', revealSections);
+  </script>
+</body>
+</html>

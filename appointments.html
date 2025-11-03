@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diverse Learning | Appointments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Open Sans', sans-serif; color:#2C3E50; background-color:#F7F9FC; scroll-behavior:smooth; overflow-x:hidden; line-height:1.6; }
+    header { position: fixed; top:0; width:100%; background:#2C3E50; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; z-index:1000; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+    .logo { font-family:'Poppins',sans-serif; font-weight:700; font-size:2rem; background:linear-gradient(45deg,#FF6B6B,#FFD6A5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:1px 1px 8px rgba(0,0,0,0.2); letter-spacing:2px; transition: transform 0.3s; }
+    .logo:hover { transform:scale(1.1) rotate(-2deg); }
+    nav a { color:#fff; text-decoration:none; margin:0 1rem; font-weight:500; transition:color 0.3s; }
+    nav a:hover, nav a.active { color:#FF6B6B; }
+    section { padding:160px 20px 40px; text-align:center; }
+    h1 { font-family:'Poppins',sans-serif; font-size:3rem; margin-bottom:20px; }
+    iframe { width:100%; height:900px; border:none; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+    footer { background:#2C3E50; color:#FFD6A5; text-align:center; padding:2rem; font-size:0.95rem; }
+    footer a { color:#FFD6A5; text-decoration:none; }
+    @media(max-width:768px){ h1{font-size:2.2rem;} iframe{height:700px;} header{flex-direction:column;} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Diverse Learning</div>
+    <nav>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="appointments.html" class="nav-link">Appointments</a>
+    </nav>
+  </header>
+
+  <section>
+    <h1>Book a Session</h1>
+    <iframe src="https://diverselearning.setmore.com/"></iframe>
+  </section>
+
+  <footer>
+    &copy; 2025 Diverse Learning. All rights reserved. | Designed by Manny
+  </footer>
+</body>
+</html>
